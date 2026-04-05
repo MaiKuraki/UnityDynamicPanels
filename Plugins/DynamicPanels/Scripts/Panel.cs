@@ -451,6 +451,9 @@ namespace DynamicPanels
 					tab.Internal.RectTransform.SetParent( null, false ); // workaround for a rare internal Unity crash
 					tab.Internal.RectTransform.SetParent( tabsParent, false );
 
+                    /// On Unity 6.5, destroying the panel without detaching its child <see cref="PanelTab.Content"/> object first will disable all components on that <see cref="PanelTab.Content"/>.
+                    tabContent.SetParent(null, false);
+
 					tab.Panel.Internal.RemoveTab( tab.Index, false );
 				}
 
