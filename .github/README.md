@@ -226,15 +226,15 @@ Panel groups are used to hold docked panels together. In a complex hierarchy, a 
 
 ### PanelSerialization
 
-This helper class can save&load the layout of a dynamic canvas via binary serialization at runtime. In the serialized data, tabs are referenced by their IDs, so these IDs should remain consistent. To test serialization in Unity editor while in Play mode, right click the DynamicPanelsCanvas component and select "*Save Layout*" or "*Load Layout*".
+This helper class can save&load the layout of a dynamic canvas to/from json at runtime. In the serialized data, tabs are referenced by their IDs, so these IDs should remain consistent. To test serialization in Unity editor while in Play mode, right click the DynamicPanelsCanvas component and select "*Save Layout*" or "*Load Layout*".
 
-`static byte[] SerializeCanvasToArray( DynamicPanelsCanvas canvas )`: serializes the current state of the panels inside the canvas and returns the serialized data. You are responsible from storing this data in a storage
+`static string SerializeCanvasToJson( DynamicPanelsCanvas canvas )`: serializes the current state of the panels inside the canvas as json. It's your responsibility to store this data in a storage
 
-`static void DeserializeCanvasFromArray( DynamicPanelsCanvas canvas, byte[] data )`: deserializes the serialized data and restores the saved state of the panels
+`static void DeserializeCanvasFromJson( DynamicPanelsCanvas canvas, string json )`: deserializes the json and restores the saved state of the panels
 
-`static void SerializeCanvas( DynamicPanelsCanvas canvas )`: internally calls *SerializeCanvasToArray* and saves the data to *PlayerPrefs* (using the *ID* of the canvas as key)
+`static void SerializeCanvas( DynamicPanelsCanvas canvas )`: internally calls *SerializeCanvasToJson* and saves the data to *PlayerPrefs* (using the *ID* of the canvas as key)
 
-`static void DeserializeCanvas( DynamicPanelsCanvas canvas )`: if a saved data for the canvas exists in *PlayerPrefs*, loads it and then calls *DeserializeCanvasFromArray* internally
+`static void DeserializeCanvas( DynamicPanelsCanvas canvas )`: if a saved data for the canvas exists in *PlayerPrefs*, loads it and then calls *DeserializeCanvasFromJson* internally
 
 ### PanelNotificationCenter
 
